@@ -1,0 +1,19 @@
+{% extends 'todoapp/base.html' %}
+
+{% block content %}
+<h1>My To-Do List</h1>
+
+<a href="{% url 'task-create' %}" class="add-link">Add New Task</a>
+
+<div>
+    {% for task in tasks %}
+    <div class="task-item {% if task.completed %}completed{% endif %}">
+        <span>{{ task.title }}</span>
+        <div>
+            <a href="{% url 'task-update' task.id %}">&#9998;</a> <a href="{% url 'task-delete' task.id %}" class="delete-btn">&#10006;</a> </div>
+    </div>
+    {% empty %}
+    <p>No tasks yet. Add one!</p>
+    {% endfor %}
+</div>
+{% endblock content %}
